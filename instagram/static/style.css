@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(235, 245, 241)
+}
+
+#cabecalho {
+    background-color: rgb(57, 57, 221);
+    width: 50%;
+    height: 500px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.form-horizontal{
+    padding-left: 300px;
+    padding-top: 75px;
+}
+
+.form-control {
+    width: 50%;
+    
+}
+
+#formulario .form{
+    padding-left: 200px;
+}

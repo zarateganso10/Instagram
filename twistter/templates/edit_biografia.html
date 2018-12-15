@@ -1,0 +1,55 @@
+{% extends 'base_dashboard.html' %}
+
+{% block content-left %}
+        <h3>Seguindo</h3>
+    {% for friend in request.user.profile.friends.all %}
+        <h4>
+            <a href="{% url 'profile' friend.pk %}">
+                {% firstof friend.get_full_name friend.username %}
+            </a>
+            <a href="{% url 'remove_friend' request.user.pk friend.pk %}">
+                <i class="fas fa-user-minus"></i>
+            </a>
+        </h4>
+    {% endfor %}
+{% endblock %}
+
+{% block content-middle %}
+            <div id="form-post">
+                <form action="{% url 'post_create' %}" method="post">
+                    {% csrf_token %}
+                    <div id="pergunta">
+                        <input type="text" class="form-control" id="id_text" name="text" placeholder="No que voce está pensando?" maxlength="500" required>
+                    </div>
+                </form>
+            </div>
+                {% for post in object_list %}
+                    <div id="posts" class="">
+                        <p>as {{ post.time.hour }}hrs</p>
+                        <h3>@{{ post.user }} say:</h3>
+                        <div id="post-text">
+                            <p><strong>{{ post.text }}</strong></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            
+{% endblock %}
+
+{% block content-right %}
+    <div id="biografia">
+        <h3>Editar Bio</h3>
+        <form class="form-horizontal"  method="post" >
+            {% csrf_token %}
+            <div class="form-group" id="form-bio">
+                    {{ form.biografia }}
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Editar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+

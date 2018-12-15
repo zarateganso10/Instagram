@@ -1,0 +1,81 @@
+{% extends "base_dashboard.html" %}
+
+{% block content-left %}
+    <h2>Seguindo</h2>
+        {% for friend in object.profile.friends.all %}
+            {% if friend != user %}
+                <h3>
+                    <a href="{% url 'profile' friend.pk %}">
+                        {% firstof friend.get_full_name friend.username %}
+                    </a>
+                </h3>
+            {% else %}
+                <h3>
+                    <a href="{% url 'dashboard' %}">
+                        {% firstof friend.get_full_name friend.username %}
+                    </a>
+                </h3>
+            {% endif %}
+        {% endfor %}
+{% endblock  %}
+
+{% block content-middle %}
+    <div id="form-post">
+                <form action="{% url 'post_create' %}" method="post">
+                    {% csrf_token %}
+                    <div id="pergunta">
+                        <input type="text" class="form-control" id="id_text" name="text" placeholder="No que voce está pensando?" maxlength="500" required>
+                    </div>
+                </form>
+            </div>
+                {% for post in object.posts.all %}
+                    <div id="posts" class="">
+                        <p>as {{ post.time.hour }}hrs</p>
+                        <h3>{{ post.user }} say:</h3>
+                        <div id="post-text">
+                            <p><strong>{{ post.text }}</strong></p>
+                        </div>
+                    </div>
+                {% endfor %}
+{% endblock  %}
+
+{% block content-right %}
+    <div id="biografia">
+        <h3>Biografia</h3>
+        <div id="biografia-text">
+            {% if object.profile.biografia != null %}
+                <h4>{{ object.profile.biografia }}</h4>
+            {% endif %}
+        </div>
+    </div>
+{% endblock  %}
+
+
+
+<h2>page of {{ object }}</h2>
+    <div class="row">
+        <div class="col-xs-3">
+            
+        </div>
+        <div id='posts' class="col-sm-6">
+            <form action="{% url 'post_create' %}" method="post">
+                {% csrf_token %}
+                <div id="pergunta">
+                    <input type="text" class="form-control" id="id_text" name="text" placeholder="O que está acontecendo?" maxlength="500" required>
+                    <i class="fas fa-images"></i>
+                    <input  class="btn btn-default" type="submit" value="Twisttar">
+                </div>
+            </form>
+            {% for post in object.posts.all %}
+                    <h4>{{ post.user }} say:</h4>
+                    <p><strong>{{ post.text }}</strong> on {{ post.time }}</p>
+            {% endfor %}
+        </div>
+        <div class="col-sm-3">
+            <br>
+            <h3>Biografia</h3>
+            {% if object.profile.biografia != null %}
+                <h4>{{ object.profile.biografia }}</h4>
+            {% endif %}
+        </div>
+    </div>

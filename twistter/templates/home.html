@@ -1,27 +1,25 @@
+{% extends "base_home.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>Twistter</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <div id='interface'>
-        <header id='cabecalho'>
-            <img src="{% static '//white_pegasus2.png' %}" alt="">
-        </header>
-        <div id='menu'>
-                <form class="form-inline pull-right">
-                    <a href="signin" type="submit" class="btn btn-primary">Sign in</a>
-                    <a href="signup" type="button" class="btn btn-primary">Sign up</a>
-                </form>
+
+{% block content %}
+        <h1><img src="{% static '//white_pegasus2.png' %}" alt="">Twistter</h1> 
+        <h2>Veja o que está acontecendo no mundo agora</h2>
+        
+        <p>Participe hoje do Twistter</p>
+        <div id="button_home">
+            <div id="inscrevase">
+                <a href="{% url 'signup' %}">
+                    <button type="button" class="btn btn-primary btn-block">inscreva-se</button>
+                </a>
+            </div>
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-default btn-block">Entrar</button>
+            </a>
         </div>
-    </div>
-    <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
-</html>
+        <div id="icones_app">
+            <h3>Disponivel na
+                <i class="fab fa-app-store"></i>
+                <i class="fab fa-android"></i>
+            </h3>
+        </div>
+{% endblock %}

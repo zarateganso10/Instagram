@@ -1,49 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-        h2>Sign up</h2>
-        <form class="form-horizontal"  method="post" >
+{% extends "base_home.html" %}
 
+{% block content %}
+
+    <div class="jumbotron text-center">
+            <h1>Twistter</h1> 
+    <form class="form-horizontal"  method="post" >
+        <div class="form-group">
                 {% csrf_token %}
-                {{ form.errors }}
-            <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
-            <div class="col-sm-10">
-                {{ form.username }}
-            </div>
-            </div>
-            <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-                {{ form.password1 }}
-            </div>
-            </div>
-            <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Password autentification</label>
-                    <div class="col-sm-10">
-                        {{ form.password2 }}
-                    </div>
-                    </div>
-                    <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">E-mail</label>
-                            <div class="col-sm-10">
-                                {{ form.email }}
-                            </div>
-                            </div>
-            
-            </div>
-            <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default pull-center">Entrar</button>
-            </div>
-            </div>
-
-        </form>
-</body>
-</html>
+            {{ form.username.label_tag }}
+                    {{ form.username }}
+            {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+            {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+            {{ form.email.label_tag }}
+                    {{ form.email }}
+        </div>
+        <button type="submit" class="btn btn-default">Cadastrar</button>
+    </form>
+    </div>
+{% endblock %}

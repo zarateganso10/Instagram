@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+  <title>Twistter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div id="body-dashboard">
+        <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+            <a href="{% url 'dashboard' %}">
+                <img src="{% static '//meteoro.png' %}" alt="">
+            </a>
+            <div id="menu-dashboard" class="">
+                <ul>
+                    <li><a href="{% url 'dashboard' %}">{{ user.username }}</a></li>
+                    <li><div class="dropdown">
+                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><a href="{% url 'edit_password' %}" method="get">editar senha</a></li>
+                            <li><a href="{% url 'edit' request.user.pk %}" method="get">editar usuario</a></li>
+                            {% comment %} <li><a data-toggle="modal" data-target="#myModal" method="get">
+                            Editar Bio
+                            </a></li> {% endcomment %}
+                            <li><a href="{% url 'logout' %}" method="get">Sair</a></li>
+                        </ul>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+            <input type="text" class="" placeholder="Search">
+            {% block header %}{% endblock %}
+        </nav>
+        <div class="col-xs-2" id="dashboard-left">
+            {% block content-left %}{% endblock %}
+        </div>
+        <div class="col-xs-6" id="dashboard-middle">
+            {% block content-middle %}{% endblock %}
+        </div>
+        <div class="col-xs-3" id="dashboard-right">
+            {% block content-right %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

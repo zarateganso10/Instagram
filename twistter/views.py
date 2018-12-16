@@ -121,7 +121,6 @@ def edit_password(request):
     return render(request, template_name, context)
 
 
-
 class Home(View):
     template_name = 'home.html'
     def get(self, request, **kwargs):
